@@ -23,6 +23,7 @@
     @yield('css_before')
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
     <link rel="stylesheet" id="css-main" href="{{ mix('css/dashmix.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="{{ mix('css/themes/xwork.css') }}"> -->
@@ -30,9 +31,9 @@
 
     <!-- Scripts -->
     <script>
-        window.Laravel = {
-            !!json_encode(['csrfToken' => csrf_token(), ]) !!
-        };
+        // window.Laravel = {
+        //     !!json_encode(['csrfToken' => csrf_token(), ]) !!
+        // };
     </script>
     <style>
         td p {
@@ -452,6 +453,8 @@
     <!-- Dashmix Core JS -->
     <script src="{{ mix('js/dashmix.app.js') }}"></script>
     <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
+    <!-- <script src=" {{ asset('js/choosen.js')}}"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <!-- Laravel Scaffolding JS -->
     <!-- <script src="{{ mix('/js/laravel.app.js') }}"></script> -->

@@ -67,8 +67,8 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="add" class="col-sm-4">Food List:</label>
-                            <div class="col-sm-8">
+                            <label class="col-sm-4">Food List:</label>
+                            <div class="col-sm-8 food-list">
                                 <button type="button" class="btn btn-primary" id="add">
                                     <i class="fa fa-plus"></i>
                                 </button>
@@ -95,18 +95,22 @@
 <!-- END Page Content -->
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" />
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script> -->
+<!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css" rel="stylesheet" /> -->
+
+<!-- <link rel="stylesheet" href="{{ asset('css/style.css')}}"> -->
+
 
 <script>
     $(document).ready(function() {
         CKEDITOR.replace('description');
+        var i = 1;
         $("#add").click(function() {
             $(this).before(
                 '<div class="food-menu row mb-2">\
-                        <label for="add" class="col-sm-3">Food:</label>\
+                        <label class="col-sm-3">Food:</label>\
                         <div class="col-sm-4 id-div">\
-                            <select name="food-id" id="food-id" class="form-control selectpicker">\
+                            <select name="food-id" id="food-id-' + i + '" class="form-control">\
                                 @foreach($fooditems as $fooditem)\
                                 <option value="{{$fooditem->id}}">{{$fooditem->food_name}}</option>\
                                 @endforeach\
@@ -120,11 +124,10 @@
                         </div>\
                     </div>'
             );
-        })
-
-        $(function() {
-            $('.selectpicker').selectpicker();
+            $("#food-id-" + i).select2();
+            i++;
         });
+
 
         deleteTag = (val) => {
             val.parentNode.parentNode.remove();
@@ -146,7 +149,7 @@
             $("input:hidden[name='food_id']").val(id_arr);
             $("input:hidden[name='food_amount']").val(amount_arr);
             $("#store").submit();
-        })
-    })
+        });
+    });
 </script>
 @endsection
