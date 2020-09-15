@@ -15,11 +15,11 @@ class SettingController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $settings = Setting::all();
-
+        // $settings = Setting::all();
+        $settings = Setting::where('user_id', $request->user_id)->where('date', $request->date)->get();
         $response = [
             'success' => true,
             'message' => 'Settings retrieved successfully.',
@@ -64,12 +64,12 @@ class SettingController extends Controller
             'user_id' => $request->user_id,
             'date' => $request->date,
             'exercise_rate' => $request->exercise_rate,
-            'sport1_type' => $request->sport1_type?$request->sport1_type:0 ,
-            'sport1_time' => $request->sport1_time?$request->sport1_time:0,
-            'sport2_type' => $request->sport2_type?$request->sport2_type:0,
-            'sport2_time' => $request->sport2_time?$request->sport2_time:0,
-            'sport3_type' => $request->sport3_type?$request->sport3_type:0,
-            'sport3_time' => $request->sport3_time?$request->sport3_time:0,
+            'sport1_type' => $request->sport1_type ? $request->sport1_type : 0,
+            'sport1_time' => $request->sport1_time ? $request->sport1_time : 0,
+            'sport2_type' => $request->sport2_type ? $request->sport2_type : 0,
+            'sport2_time' => $request->sport2_time ? $request->sport2_time : 0,
+            'sport3_type' => $request->sport3_type ? $request->sport3_type : 0,
+            'sport3_time' => $request->sport3_time ? $request->sport3_time : 0,
             'height' => $request->height,
             'weight' => $request->weight,
             'neck' => $request->neck,
@@ -140,12 +140,12 @@ class SettingController extends Controller
             'user_id' => $request->user_id,
             'date' => $request->date,
             'exercise_rate' => $request->exercise_rate,
-            'sport1_type' => $request->sport1_type?$request->sport1_type:0 ,
-            'sport1_time' => $request->sport1_time?$request->sport1_time:0,
-            'sport2_type' => $request->sport2_type?$request->sport2_type:0,
-            'sport2_time' => $request->sport2_time?$request->sport2_time:0,
-            'sport3_type' => $request->sport3_type?$request->sport3_type:0,
-            'sport3_time' => $request->sport3_time?$request->sport3_time:0,
+            'sport1_type' => $request->sport1_type ? $request->sport1_type : 0,
+            'sport1_time' => $request->sport1_time ? $request->sport1_time : 0,
+            'sport2_type' => $request->sport2_type ? $request->sport2_type : 0,
+            'sport2_time' => $request->sport2_time ? $request->sport2_time : 0,
+            'sport3_type' => $request->sport3_type ? $request->sport3_type : 0,
+            'sport3_time' => $request->sport3_time ? $request->sport3_time : 0,
             'height' => $request->height,
             'weight' => $request->weight,
             'neck' => $request->neck,
