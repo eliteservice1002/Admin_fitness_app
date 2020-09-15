@@ -19,7 +19,7 @@ class FoodItemController extends Controller
      */
     public function index()
     {
-        //
+        //       
         $fooditems = FoodItem::all();
         foreach ($fooditems as $key => $fooditem) {
             $fooditems[$key]['category'] = FoodCategory::where('id', $fooditem->food_categories_id)->first();
@@ -143,7 +143,7 @@ class FoodItemController extends Controller
         //
         $foodvalues = FoodValue::where('food_items_id', $fooditem->id)->get();
 
-        foreach($foodvalues as $foodvalue) {
+        foreach ($foodvalues as $foodvalue) {
             $foodvalue->delete();
         }
 

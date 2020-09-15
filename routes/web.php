@@ -23,6 +23,7 @@ Route::match(['get', 'post'], '/dashboard', function () {
 Auth::routes();
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::resource('categories', 'CategoryController')->middleware('auth');
 Route::resource('foodcategories', 'FoodCategoryController')->middleware('auth');
 Route::resource('fooditems', 'FoodItemController')->middleware('auth');

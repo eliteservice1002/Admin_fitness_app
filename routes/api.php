@@ -15,10 +15,12 @@ use Illuminate\Http\Request;
 
 Route::post('register', 'API\UserController@register');
 Route::post('login', 'API\UserController@login');
+Route::resource('fooditems', 'API\FoodItemController');
+Route::resource('recipes', 'API\RecipeController');
 
 Route::middleware('auth:api')->group(function () {
-    Route::resource('fooditems', 'API\FoodItemController');
-    Route::resource('recipes', 'API\RecipeController');
+    // Route::resource('fooditems', 'API\FoodItemController');
+    // Route::resource('recipes', 'API\RecipeController');
     Route::resource('settings', 'API\SettingController');
     Route::resource('sports', 'API\SportController');
 });
