@@ -30,3 +30,4 @@ Route::resource('fooditems', 'FoodItemController')->middleware('auth');
 Route::resource('foodvalues', 'FoodValueController')->middleware('auth');
 Route::resource('recipes', 'RecipeController')->middleware('auth');
 Route::resource('sports', 'SportController')->middleware('auth');
+Route::resource('customers', 'CustomerController')->middleware('auth');

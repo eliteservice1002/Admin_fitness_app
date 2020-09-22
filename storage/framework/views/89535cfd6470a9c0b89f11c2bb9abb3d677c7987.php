@@ -84,7 +84,7 @@
                                                         <p>Are you sure to delete this <span class="text-info">Food item</span>?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" id="confirm" class="btn btn-sm btn-primary" data-dismiss="modal">Yes</button>
+                                                        <button type="button" id="confirm" class="btn btn-sm btn-primary" data-id="<?php echo e($foodItem->id); ?>">Yes</button>
                                                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">No</button>
                                                     </div>
                                                 </div>
@@ -108,7 +108,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        alert("here");
         $('#confirm').click(function() {
             $('#delete').submit();
         });

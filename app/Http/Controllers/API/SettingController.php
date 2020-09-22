@@ -60,29 +60,59 @@ class SettingController extends Controller
             return response()->json($response, 404);
         }
 
-        Setting::create([
-            'user_id' => $request->user_id,
-            'date' => $request->date,
-            'exercise_rate' => $request->exercise_rate,
-            'sport1_type' => $request->sport1_type ? $request->sport1_type : 0,
-            'sport1_time' => $request->sport1_time ? $request->sport1_time : 0,
-            'sport2_type' => $request->sport2_type ? $request->sport2_type : 0,
-            'sport2_time' => $request->sport2_time ? $request->sport2_time : 0,
-            'sport3_type' => $request->sport3_type ? $request->sport3_type : 0,
-            'sport3_time' => $request->sport3_time ? $request->sport3_time : 0,
-            'height' => $request->height,
-            'weight' => $request->weight,
-            'neck' => $request->neck,
-            'waist' => $request->waist,
-            'thigh' => $request->thigh,
-            'weekly_goal' => $request->weekly_goal
-        ]);
+        $setting = Setting::where("user_id", $request->user_id)->where("date", $request->date)->get();
 
-        // return response
-        $response = [
-            'success' => true,
-            'message' => 'Setting created successfully.',
-        ];
+        if (count($setting) > 0) {
+            Setting::where("user_id", $request->user_id)->where("date", $request->date)
+                ->update([
+                    'user_id' => $request->user_id,
+                    'date' => $request->date,
+                    'exercise_rate' => $request->exercise_rate,
+                    'sport1_type' => $request->sport1_type ? $request->sport1_type : 0,
+                    'sport1_time' => $request->sport1_time ? $request->sport1_time : 0,
+                    'sport2_type' => $request->sport2_type ? $request->sport2_type : 0,
+                    'sport2_time' => $request->sport2_time ? $request->sport2_time : 0,
+                    'sport3_type' => $request->sport3_type ? $request->sport3_type : 0,
+                    'sport3_time' => $request->sport3_time ? $request->sport3_time : 0,
+                    'height' => $request->height,
+                    'weight' => $request->weight,
+                    'neck' => $request->neck,
+                    'waist' => $request->waist,
+                    'thigh' => $request->thigh,
+                    'weekly_goal' => $request->weekly_goal
+                ]);
+            // return response
+            $response = [
+                'success' => true,
+                'message' => 'Setting updated successfully.',
+            ];
+        } else {
+
+            Setting::create([
+                'user_id' => $request->user_id,
+                'date' => $request->date,
+                'exercise_rate' => $request->exercise_rate,
+                'sport1_type' => $request->sport1_type ? $request->sport1_type : 0,
+                'sport1_time' => $request->sport1_time ? $request->sport1_time : 0,
+                'sport2_type' => $request->sport2_type ? $request->sport2_type : 0,
+                'sport2_time' => $request->sport2_time ? $request->sport2_time : 0,
+                'sport3_type' => $request->sport3_type ? $request->sport3_type : 0,
+                'sport3_time' => $request->sport3_time ? $request->sport3_time : 0,
+                'height' => $request->height,
+                'weight' => $request->weight,
+                'neck' => $request->neck,
+                'waist' => $request->waist,
+                'thigh' => $request->thigh,
+                'weekly_goal' => $request->weekly_goal
+            ]);
+
+            // return response
+            $response = [
+                'success' => true,
+                'message' => 'Setting created successfully.',
+            ];
+        }
+
 
         return response()->json($response, 200);
     }
@@ -136,6 +166,7 @@ class SettingController extends Controller
             ];
             return response()->json($response, 404);
         }
+
         $setting->update([
             'user_id' => $request->user_id,
             'date' => $request->date,

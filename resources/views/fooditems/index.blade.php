@@ -47,7 +47,7 @@
                     <tbody>
                         @foreach ($fooditems as $foodItem)
                         <tr>
-                            <td class="text-center">{{ ++$i }}</td>
+                            <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->food_name }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->foodcategory->name }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->carbon }}</td>
@@ -55,7 +55,7 @@
                             <td class="d-none d-sm-table-cell">{{ $foodItem->fat }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->portion_in_grams }}</td>
                             <td class="text-center">
-                                <form id="delete" action="{{ route('fooditems.destroy',$foodItem->id) }}" method="POST">
+                                <form id="delete-{{$foodItem->id}}" action="{{ route('fooditems.destroy',$foodItem->id) }}" method="POST">
                                     <div class="btn-group">
                                         <a class="btn btn-success" href="{{ route('fooditems.show',$foodItem->id) }}" data-toggle="tooltip" title="Show">
                                             <i class="fa fa-eye"></i>
@@ -69,11 +69,11 @@
                                         <button type="submit" class="btn btn-danger" data-toggle="modal" data-id="{{$foodItem->id}}" title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button> -->
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-block-normal" title="Delete">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-block-normal-{{$foodItem->id}}" title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button>
                                         <!-- Normal Default Modal -->
-                                        <div class="modal" id="modal-block-normal" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
+                                        <div class="modal" id="modal-block-normal-{{$foodItem->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -86,7 +86,7 @@
                                                         <p>Are you sure to delete this <span class="text-info">Food item</span>?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" id="confirm" class="btn btn-sm btn-primary" data-dismiss="modal">Yes</button>
+                                                        <button type="button" id="confirm" class="btn btn-sm btn-primary confirm" data-id="{{$foodItem->id}}">Yes</button>
                                                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">No</button>
                                                     </div>
                                                 </div>
@@ -110,8 +110,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#confirm').click(function() {
-            $('#delete').submit();
+        $('.confirm').click(function() {
+            $('#delete-' + $(this).data("id")).submit();
         });
     });
 </script>

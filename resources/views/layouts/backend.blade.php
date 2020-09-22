@@ -308,6 +308,13 @@
             <div class="content-side content-side-full">
                 <ul class="nav-main">
                     <li class="nav-main-item">
+                        <a class="nav-main-link{{ request()->is('customers*') ? ' active' : '' }}" href="/customers">
+                            <i class="nav-main-link-icon si si-notebook"></i>
+                            <span class="nav-main-link-name">Customers</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('categories*') ? ' active' : '' }}" href="/categories">
                             <i class="nav-main-link-icon si si-notebook"></i>
                             <span class="nav-main-link-name">Category</span>
@@ -341,6 +348,7 @@
                             <span class="nav-main-link-name">Sport</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
             <!-- END Side Navigation -->
