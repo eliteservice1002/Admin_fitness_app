@@ -19,7 +19,7 @@
                 <h3 class="block-title">Edit Category</h3>
                 <div class="block-options">
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('categories.index') }}"> Back</a>
+                        <a class="btn btn-primary" href="{{ route('categories.index') }}"> Πίσω</a>
                     </div>
                 </div>
             </div>

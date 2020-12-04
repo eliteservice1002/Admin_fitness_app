@@ -1,6 +1,4 @@
-@extends('layouts.backend')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 <!-- Hero -->
 <div class="bg-body-light">
@@ -34,23 +32,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($customers as $customer)
+                        <?php $__currentLoopData = $customers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $customer): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $customer->email }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $customer->gender }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $customer->birthday }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $customer->type }}</td>
+                            <td class="text-center"><?php echo e($loop->iteration); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($customer->email); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($customer->gender); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($customer->birthday); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($customer->type); ?></td>
                             <td class="text-center">
-                                <form id="delete-{{$customer->id}}" action="{{ route('customers.destroy',$customer->id) }}" method="POST">
+                                <form id="delete-<?php echo e($customer->id); ?>" action="<?php echo e(route('customers.destroy',$customer->id)); ?>" method="POST">
                                     <div class="btn-group">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-block-normal-{{$customer->id}}" title="Delete">
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('DELETE'); ?>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-block-normal-<?php echo e($customer->id); ?>" title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button>
 
-                                        <div class="modal" id="modal-block-normal-{{$customer->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
+                                        <div class="modal" id="modal-block-normal-<?php echo e($customer->id); ?>" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -63,7 +61,7 @@
                                                         <p>Είστε βέβαιοι ότι θα διαγράψετε αυτές τις πληροφορίες;?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-sm btn-primary confirm" data-id="{{$customer->id}}">Ναί</button>
+                                                        <button type="button" class="btn btn-sm btn-primary confirm" data-id="<?php echo e($customer->id); ?>">Ναί</button>
                                                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">Οχι</button>
                                                     </div>
                                                 </div>
@@ -76,7 +74,7 @@
                             </td>
 
                         </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
             </div>
@@ -93,4 +91,5 @@
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/customers/index.blade.php ENDPATH**/ ?>

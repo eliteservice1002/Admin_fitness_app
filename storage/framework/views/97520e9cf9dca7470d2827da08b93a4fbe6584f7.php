@@ -1,6 +1,4 @@
-@extends('layouts.backend')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Hero -->
 <div class="bg-body-light">
     <div class="content content-full">
@@ -18,18 +16,18 @@
             <h3 class="block-title">Λίστα Τροφίμων</h3>
             <div class="block-options">
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('fooditems.create') }}" data-toggle="tooltip" title="Create">
+                    <a class="btn btn-primary" href="<?php echo e(route('fooditems.create')); ?>" data-toggle="tooltip" title="Create">
                         <i class="fa fa-plus"></i>
                     </a>
                 </div>
             </div>
         </div>
         <div class="block-content">
-            @if ($message = Session::get('success'))
+            <?php if($message = Session::get('success')): ?>
             <div class="alert alert-success">
-                <p style="margin-bottom:0;">{{ $message }}</p>
+                <p style="margin-bottom:0;"><?php echo e($message); ?></p>
             </div>
-            @endif
+            <?php endif; ?>
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-vcenter">
                     <thead>
@@ -45,35 +43,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($fooditems as $foodItem)
+                        <?php $__currentLoopData = $fooditems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $foodItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                         <tr>
-                            <td class="text-center">{{ $loop->iteration }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $foodItem->food_name }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $foodItem->foodcategory->name }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $foodItem->carbon }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $foodItem->protein }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $foodItem->fat }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $foodItem->portion_in_grams }}</td>
+                            <td class="text-center"><?php echo e($loop->iteration); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->food_name); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->foodcategory->name); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->carbon); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->protein); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->fat); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->portion_in_grams); ?></td>
                             <td class="text-center">
-                                <form id="delete-{{$foodItem->id}}" action="{{ route('fooditems.destroy',$foodItem->id) }}" method="POST">
+                                <form id="delete-<?php echo e($foodItem->id); ?>" action="<?php echo e(route('fooditems.destroy',$foodItem->id)); ?>" method="POST">
                                     <div class="btn-group">
-                                        <a class="btn btn-success" href="{{ route('fooditems.show',$foodItem->id) }}" data-toggle="tooltip" title="Show">
+                                        <a class="btn btn-success" href="<?php echo e(route('fooditems.show',$foodItem->id)); ?>" data-toggle="tooltip" title="Show">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a class="btn btn-primary" href="{{ route('fooditems.edit',$foodItem->id) }}" data-toggle="tooltip" title="Edit">
+                                        <a class="btn btn-primary" href="<?php echo e(route('fooditems.edit',$foodItem->id)); ?>" data-toggle="tooltip" title="Edit">
                                             <i class="fa fa-pencil-alt"></i>
                                         </a>
-                                        @csrf
-                                        @method('DELETE')
+                                        <?php echo csrf_field(); ?>
+                                        <?php echo method_field('DELETE'); ?>
                                         <!-- 
-                                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-id="{{$foodItem->id}}" title="Delete">
+                                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-id="<?php echo e($foodItem->id); ?>" title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button> -->
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-block-normal-{{$foodItem->id}}" title="Delete">
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-block-normal-<?php echo e($foodItem->id); ?>" title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button>
                                         <!-- Normal Default Modal -->
-                                        <div class="modal" id="modal-block-normal-{{$foodItem->id}}" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
+                                        <div class="modal" id="modal-block-normal-<?php echo e($foodItem->id); ?>" tabindex="-1" role="dialog" aria-labelledby="modal-block-normal" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -86,7 +84,7 @@
                                                         <p>Are you sure to delete this <span class="text-info">Food item</span>?</p>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" id="confirm" class="btn btn-sm btn-primary confirm" data-id="{{$foodItem->id}}">Yes</button>
+                                                        <button type="button" id="confirm" class="btn btn-sm btn-primary confirm" data-id="<?php echo e($foodItem->id); ?>">Yes</button>
                                                         <button type="button" class="btn btn-sm btn-light" data-dismiss="modal">No</button>
                                                     </div>
                                                 </div>
@@ -97,10 +95,10 @@
                                 </form>
                             </td>
                         </tr>
-                        @endforeach
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
-                <div class="text-center">{!! $fooditems->links() !!}</div>
+                <div class="text-center"><?php echo $fooditems->links(); ?></div>
             </div>
         </div>
     </div>
@@ -115,4 +113,5 @@
         });
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/fooditems/index.blade.php ENDPATH**/ ?>

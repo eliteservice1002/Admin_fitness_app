@@ -1,6 +1,4 @@
-@extends('layouts.backend')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Hero -->
 <div class="bg-body-light">
     <div class="content content-full">
@@ -36,4 +34,5 @@
     </div>
 </div>
 <!-- END Page Content -->
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/dashboard.blade.php ENDPATH**/ ?>

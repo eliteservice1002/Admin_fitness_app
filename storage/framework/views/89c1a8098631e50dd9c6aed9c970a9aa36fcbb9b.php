@@ -1,6 +1,4 @@
-@extends('layouts.backend')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -19,32 +17,32 @@
                 <h3 class="block-title">Προσθήκη Νέας Τροφής</h3>
                 <div class="block-options">
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('fooditems.index') }}"> Πίσω</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('fooditems.index')); ?>"> Πίσω</a>
                     </div>
                 </div>
             </div>
             <div class="block-content">
-                @if ($errors->any())
+                <?php if($errors->any()): ?>
                     <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
                         <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
-                @endif
-                <form action="{{ route('fooditems.store') }}" method="POST">
-                    @csrf
+                <?php endif; ?>
+                <form action="<?php echo e(route('fooditems.store')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="row justify-content-center">
                         <div class="col-xs-10 col-sm-10 col-md-10">
                             <div class="form-group row">
                                 <label for="food_categories_id" class="col-sm-4">Κατηγορία:</label>
                                 <div class="col-sm-8">
                                     <select name="food_categories_id" id="food_categories_id" class="form-control">
-                                        @foreach($foodcategories as $foodcategory)
-                                            <option value="{{$foodcategory->id}}">{{$foodcategory->name}}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $foodcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $foodcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($foodcategory->id); ?>"><?php echo e($foodcategory->name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -93,4 +91,6 @@
         <!-- END Your Block -->
     </div>
     <!-- END Page Content -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/fooditems/create.blade.php ENDPATH**/ ?>

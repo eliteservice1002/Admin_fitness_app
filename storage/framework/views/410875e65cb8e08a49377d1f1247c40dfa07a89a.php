@@ -1,6 +1,4 @@
-@extends('layouts.backend')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -19,18 +17,18 @@
                 <h3 class="block-title">Λίστα Κατηγοριών Τροφίμων</h3>
                 <div class="block-options">
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('foodcategories.create') }}" data-toggle="tooltip" title="Create">
+                        <a class="btn btn-primary" href="<?php echo e(route('foodcategories.create')); ?>" data-toggle="tooltip" title="Create">
                             <i class="fa fa-plus"></i>
                         </a>
                     </div>
                 </div>
             </div>
             <div class="block-content">
-                @if ($message = Session::get('success'))
+                <?php if($message = Session::get('success')): ?>
                     <div class="alert alert-success">
-                        <p style="margin-bottom:0;">{{ $message }}</p>
+                        <p style="margin-bottom:0;"><?php echo e($message); ?></p>
                     </div>
-                @endif
+                <?php endif; ?>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-vcenter">
                         <thead>
@@ -41,21 +39,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($foodcategories as $foodcategory)
+                            <?php $__currentLoopData = $foodcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $foodcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <td class="text-center">{{ ++$i }}</td>
-                                <td class="d-none d-sm-table-cell">{{ $foodcategory->name }}</td>
+                                <td class="text-center"><?php echo e(++$i); ?></td>
+                                <td class="d-none d-sm-table-cell"><?php echo e($foodcategory->name); ?></td>
                                 <td class="text-center">
-                                    <form action="{{ route('foodcategories.destroy',$foodcategory->id) }}" method="POST">
+                                    <form action="<?php echo e(route('foodcategories.destroy',$foodcategory->id)); ?>" method="POST">
                                         <div class="btn-group">
-                                            <a class="btn btn-success" href="{{ route('foodcategories.show',$foodcategory->id) }}" data-toggle="tooltip" title="Show">
+                                            <a class="btn btn-success" href="<?php echo e(route('foodcategories.show',$foodcategory->id)); ?>" data-toggle="tooltip" title="Show">
                                                 <i class="fa fa-eye"></i>
                                             </a>
-                                            <a class="btn btn-primary" href="{{ route('foodcategories.edit',$foodcategory->id) }}"  data-toggle="tooltip" title="Edit">
+                                            <a class="btn btn-primary" href="<?php echo e(route('foodcategories.edit',$foodcategory->id)); ?>"  data-toggle="tooltip" title="Edit">
                                                 <i class="fa fa-pencil-alt"></i>
                                             </a>
-                                            @csrf
-                                            @method('DELETE')
+                                            <?php echo csrf_field(); ?>
+                                            <?php echo method_field('DELETE'); ?>
 
                                             <button type="submit" class="btn btn-danger" data-toggle="tooltip" title="Delete">
                                                 <i class="fa fa-times"></i>
@@ -64,14 +62,16 @@
                                     </form>
                                 </td>
                             </tr>
-                            @endforeach
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
-                    <div class="text-center">{!! $foodcategories->links() !!}</div>
+                    <div class="text-center"><?php echo $foodcategories->links(); ?></div>
                 </div>
             </div>
         </div>
         <!-- END Your Block -->
     </div>
     <!-- END Page Content -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/foodcategories/index.blade.php ENDPATH**/ ?>

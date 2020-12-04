@@ -1,6 +1,4 @@
-@extends('layouts.backend')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
     <!-- Hero -->
     <div class="bg-body-light">
         <div class="content content-full">
@@ -16,26 +14,26 @@
         <!-- Your Block -->
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Προσθήκη Νέας Κατηγορίας Γευμάτων</h3>
+                <h3 class="block-title">Προσθήκη Νέας Κατηγορίας</h3>
                 <div class="block-options">
                     <div class="pull-right">
-                        <a class="btn btn-primary" href="{{ route('categories.index') }}"> Πίσω</a>
+                        <a class="btn btn-primary" href="<?php echo e(route('foodcategories.index')); ?>"> Πίσω</a>
                     </div>
                 </div>
             </div>
             <div class="block-content">
-                @if ($errors->any())
+                <?php if($errors->any()): ?>
                     <div class="alert alert-danger">
                         <strong>Whoops!</strong> There were some problems with your input.<br><br>
                         <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
+                            <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <li><?php echo e($error); ?></li>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </ul>
                     </div>
-                @endif
-                <form action="{{ route('categories.store') }}" method="POST">
-                    @csrf
+                <?php endif; ?>
+                <form action="<?php echo e(route('foodcategories.store')); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <div class="row justify-content-center">
                         <div class="col-xs-8 col-sm-8 col-md-8">
                             <div class="form-group row">
@@ -61,4 +59,6 @@
         <!-- END Your Block -->
     </div>
     <!-- END Page Content -->
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/foodcategories/create.blade.php ENDPATH**/ ?>

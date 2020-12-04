@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ config('app.locale') }}">
+<html lang="<?php echo e(config('app.locale')); ?>">
 
 <head>
     <meta charset="utf-8">
@@ -12,22 +12,22 @@
     <meta name="robots" content="noindex, nofollow">
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
 
     <!-- Icons -->
-    <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-    <link rel="icon" sizes="192x192" type="image/png" href="{{ asset('media/favicons/favicon-192x192.png') }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+    <link rel="shortcut icon" href="<?php echo e(asset('media/favicons/favicon.png')); ?>">
+    <link rel="icon" sizes="192x192" type="image/png" href="<?php echo e(asset('media/favicons/favicon-192x192.png')); ?>">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo e(asset('media/favicons/apple-touch-icon-180x180.png')); ?>">
 
     <!-- Fonts and Styles -->
-    @yield('css_before')
+    <?php echo $__env->yieldContent('css_before'); ?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
-    <link rel="stylesheet" id="css-main" href="{{ mix('css/dashmix.css') }}">
+    <link rel="stylesheet" id="css-main" href="<?php echo e(mix('css/dashmix.css')); ?>">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
-    <!-- <link rel="stylesheet" id="css-theme" href="{{ mix('css/themes/xwork.css') }}"> -->
-    @yield('css_after')
+    <!-- <link rel="stylesheet" id="css-theme" href="<?php echo e(mix('css/themes/xwork.css')); ?>"> -->
+    <?php echo $__env->yieldContent('css_after'); ?>
 
     <!-- Scripts -->
     <script>
@@ -95,12 +95,12 @@
         <!-- Side Overlay-->
         <aside id="side-overlay">
             <!-- Side Header -->
-            <div class="bg-image" style="background-image: url('{{ asset('media/various/bg_side_overlay_header.jpg') }}');">
+            <div class="bg-image" style="background-image: url('<?php echo e(asset('media/various/bg_side_overlay_header.jpg')); ?>');">
                 <div class="bg-primary-op">
                     <div class="content-header">
                         <!-- User Avatar -->
                         <a class="img-link mr-1" href="javascript:void(0)">
-                            <img class="img-avatar img-avatar48" src="{{ asset('media/avatars/avatar10.jpg') }}" alt="">
+                            <img class="img-avatar img-avatar48" src="<?php echo e(asset('media/avatars/avatar10.jpg')); ?>" alt="">
                         </a>
                         <!-- END User Avatar -->
 
@@ -138,42 +138,42 @@
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xwork" data-toggle="theme" data-theme="{{ mix('css/themes/xwork.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xwork" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xwork.css')); ?>" href="#">
                                     xWork
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xmodern" data-toggle="theme" data-theme="{{ mix('css/themes/xmodern.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xmodern" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xmodern.css')); ?>" href="#">
                                     xModern
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xeco" data-toggle="theme" data-theme="{{ mix('css/themes/xeco.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xeco" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xeco.css')); ?>" href="#">
                                     xEco
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xsmooth" data-toggle="theme" data-theme="{{ mix('css/themes/xsmooth.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xsmooth" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xsmooth.css')); ?>" href="#">
                                     xSmooth
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xinspire" data-toggle="theme" data-theme="{{ mix('css/themes/xinspire.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xinspire" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xinspire.css')); ?>" href="#">
                                     xInspire
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xdream" data-toggle="theme" data-theme="{{ mix('css/themes/xdream.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xdream" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xdream.css')); ?>" href="#">
                                     xDream
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xpro" data-toggle="theme" data-theme="{{ mix('css/themes/xpro.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xpro" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xpro.css')); ?>" href="#">
                                     xPro
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
-                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xplay" data-toggle="theme" data-theme="{{ mix('css/themes/xplay.css') }}" href="#">
+                                <a class="d-block py-3 text-white font-size-sm font-w600 bg-xplay" data-toggle="theme" data-theme="<?php echo e(mix('css/themes/xplay.css')); ?>" href="#">
                                     xPlay
                                 </a>
                             </div>
@@ -308,42 +308,42 @@
             <div class="content-side content-side-full">
                 <ul class="nav-main">
                     <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('customers*') ? ' active' : '' }}" href="/customers">
+                        <a class="nav-main-link<?php echo e(request()->is('customers*') ? ' active' : ''); ?>" href="/customers">
                             <i class="nav-main-link-icon si si-notebook"></i>
                             <span class="nav-main-link-name">Πελάτες</span>
                         </a>
                     </li>
 
                     <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('categories*') ? ' active' : '' }}" href="/categories">
+                        <a class="nav-main-link<?php echo e(request()->is('categories*') ? ' active' : ''); ?>" href="/categories">
                             <i class="nav-main-link-icon si si-notebook"></i>
                             <span class="nav-main-link-name">Κατηγορίες Μενού</span>
                         </a>
                     </li>
 
                     <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('recipes*') ? ' active' : '' }}" href="/recipes">
+                        <a class="nav-main-link<?php echo e(request()->is('recipes*') ? ' active' : ''); ?>" href="/recipes">
                             <i class="nav-main-link-icon si si-grid"></i>
                             <span class="nav-main-link-name">Συνταγές</span>
                         </a>
                     </li>
 
                     <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('foodcategories*') ? ' active' : '' }}" href="/foodcategories">
+                        <a class="nav-main-link<?php echo e(request()->is('foodcategories*') ? ' active' : ''); ?>" href="/foodcategories">
                             <i class="nav-main-link-icon si si-notebook"></i>
                             <span class="nav-main-link-name">Κατηγορίες Τροφίμων</span>
                         </a>
                     </li>
 
                     <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('fooditems*') ? ' active' : '' }}" href="/fooditems">
+                        <a class="nav-main-link<?php echo e(request()->is('fooditems*') ? ' active' : ''); ?>" href="/fooditems">
                             <i class="nav-main-link-icon si si-cup"></i>
                             <span class="nav-main-link-name">Τρόφιμα</span>
                         </a>
                     </li>
 
                     <li class="nav-main-item">
-                        <a class="nav-main-link{{ request()->is('sports*') ? ' active' : '' }}" href="/sports">
+                        <a class="nav-main-link<?php echo e(request()->is('sports*') ? ' active' : ''); ?>" href="/sports">
                             <i class="nav-main-link-icon si si-social-dribbble"></i>
                             <span class="nav-main-link-name">Αθλήματα</span>
                         </a>
@@ -384,7 +384,7 @@
                                 User Options
                             </div>
                             <div class="p-2">
-                                <a class="dropdown-item" href="{{ route('logout')}}">
+                                <a class="dropdown-item" href="<?php echo e(route('logout')); ?>">
                                     <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Sign Out
                                 </a>
                             </div>
@@ -407,7 +407,7 @@
             <div id="page-header-search" class="overlay-header bg-primary">
                 <div class="content-header">
                     <form class="w-100" action="/dashboard" method="POST">
-                        @csrf
+                        <?php echo csrf_field(); ?>
                         <div class="input-group">
                             <div class="input-group-prepend">
                                 <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
@@ -437,7 +437,7 @@
 
         <!-- Main Container -->
         <main id="main-container">
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </main>
         <!-- END Main Container -->
 
@@ -459,15 +459,15 @@
     <!-- END Page Container -->
 
     <!-- Dashmix Core JS -->
-    <script src="{{ mix('js/dashmix.app.js') }}"></script>
-    <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
-    <!-- <script src=" {{ asset('js/choosen.js')}}"></script> -->
+    <script src="<?php echo e(mix('js/dashmix.app.js')); ?>"></script>
+    <script src="<?php echo e(asset('plugins/ckeditor/ckeditor.js')); ?>"></script>
+    <!-- <script src=" <?php echo e(asset('js/choosen.js')); ?>"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
     <!-- Laravel Scaffolding JS -->
-    <!-- <script src="{{ mix('/js/laravel.app.js') }}"></script> -->
+    <!-- <script src="<?php echo e(mix('/js/laravel.app.js')); ?>"></script> -->
 
-    @yield('js_after')
+    <?php echo $__env->yieldContent('js_after'); ?>
 </body>
 
-</html>
+</html><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/layouts/backend.blade.php ENDPATH**/ ?>

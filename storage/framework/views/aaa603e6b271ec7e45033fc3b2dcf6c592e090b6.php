@@ -20,15 +20,15 @@
 
         <!-- Icons -->
         <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
-        <link rel="shortcut icon" href="{{ asset('media/favicons/favicon.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('media/favicons/favicon-192x192.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('media/favicons/apple-touch-icon-180x180.png') }}">
+        <link rel="shortcut icon" href="<?php echo e(asset('media/favicons/favicon.png')); ?>">
+        <link rel="icon" type="image/png" sizes="192x192" href="<?php echo e(asset('media/favicons/favicon-192x192.png')); ?>">
+        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo e(asset('media/favicons/apple-touch-icon-180x180.png')); ?>">
         <!-- END Icons -->
 
         <!-- Stylesheets -->
         <!-- Fonts and Dashmix framework -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
-        <link rel="stylesheet" id="css-main" href="{{ asset('css/dashmix.css') }}">
+        <link rel="stylesheet" id="css-main" href="<?php echo e(asset('css/dashmix.css')); ?>">
 
         <!-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: -->
         <!-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/xwork.min.css"> -->
@@ -109,24 +109,24 @@
                                 <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
                                 <div class="row no-gutters justify-content-center">
                                     <div class="col-sm-8 col-xl-6">
-                                        <form class="js-validation-signin" action="{{ route('login') }}" method="POST">
-                                            @csrf
+                                        <form class="js-validation-signin" action="<?php echo e(route('login')); ?>" method="POST">
+                                            <?php echo csrf_field(); ?>
                                             <div class="py-3">
                                                 <div class="form-group">
                                                     <input type="text" class="form-control form-control-lg form-control-alt" id="email" name="email" placeholder="Email">
-                                                    @if ($errors->has('email'))
+                                                    <?php if($errors->has('email')): ?>
                                                         <span class="helper-text" data-error="wrong" data-success="right">
                                                             <strong>Το πεδίο email είναι υποχρεωτικό.</strong>
                                                         </span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                                 <div class="form-group">
                                                     <input type="password" class="form-control form-control-lg form-control-alt" id="password" name="password" placeholder="Κωδικός">
-                                                    @if ($errors->has('password'))
+                                                    <?php if($errors->has('password')): ?>
                                                         <span class="helper-text" data-error="wrong" data-success="right">
                                                             <strong>Το πεδίο κωδικού πρόσβασης απαιτείται.</strong>
                                                         </span>
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -179,7 +179,7 @@
             assets/js/core/jquery.appear.min.js
             assets/js/core/js.cookie.min.js
         -->
-        <script src="{{ asset('js/dashmix.core.min.js') }}"></script>
+        <script src="<?php echo e(asset('js/dashmix.core.min.js')); ?>"></script>
 
         <!--
             Dashmix JS
@@ -187,12 +187,13 @@
             Custom functionality including Blocks/Layout API as well as other vital and optional helpers
             webpack is putting everything together at assets/_es6/main/app.js
         -->
-        <script src="{{ asset('js/dashmix.app.js') }}"></script>
+        <script src="<?php echo e(asset('js/dashmix.app.js')); ?>"></script>
 
         <!-- Page JS Plugins -->
-        <script src="{{ asset('js/plugins/jquery-validation/jquery.validate.min.js') }}"></script>
+        <script src="<?php echo e(asset('js/plugins/jquery-validation/jquery.validate.min.js')); ?>"></script>
 
         <!-- Page JS Code -->
-        <script src="{{ asset('js/pages/op_auth_signin.js') }}"></script>
+        <script src="<?php echo e(asset('js/pages/op_auth_signin.js')); ?>"></script>
     </body>
 </html>
+<?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/auth/login.blade.php ENDPATH**/ ?>

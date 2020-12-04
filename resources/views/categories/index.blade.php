@@ -5,7 +5,7 @@
     <div class="bg-body-light">
         <div class="content content-full">
             <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center">
-                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Category</h1>
+                <h1 class="flex-sm-fill font-size-h2 font-w400 mt-2 mb-0 mb-sm-2">Κατηγορίες Μενού</h1>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <!-- Your Block -->
         <div class="block block-rounded block-bordered">
             <div class="block-header block-header-default">
-                <h3 class="block-title">Category List</h3>
+                <h3 class="block-title">Λίστα Κατηγοριών Γευμάτων</h3>
                 <div class="block-options">
                     <div class="pull-right">
                         <a class="btn btn-primary" href="{{ route('categories.create') }}" data-toggle="tooltip" title="Create">
@@ -36,8 +36,8 @@
                         <thead>
                             <tr>
                                 <th class="text-center" style="width: 10%;">No</th>
-                                <th class="d-none d-sm-table-cell" style="width: 70%;">Name</th>
-                                <th class="d-none d-md-table-cell text-center" style="width: 20%;">Actions</th>
+                                <th class="d-none d-sm-table-cell" style="width: 70%;">Όνομα</th>
+                                <th class="d-none d-md-table-cell text-center" style="width: 20%;">Ενέργειες</th>
                             </tr>
                         </thead>
                         <tbody>
