@@ -5,14 +5,14 @@
         <div class="hero-inner">
             <div class="content content-full text-center">
                 <h1 class="display-4 font-w700 mb-2">
-                    Food<span class="text-primary">management</span>
+                    <span class="text-primary">ZAFEIRAKI</span>
                 </h1>
                 <h2 class="h3 font-w300 text-muted mb-5 invisible" data-toggle="appear" data-timeout="150">
 
                 </h2>
                 <span class="m-2 d-inline-block invisible" data-toggle="appear" data-timeout="300">
                     <a class="btn btn-hero-success" href="/dashboard">
-                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Enter Dashboard
+                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Εισαγω Πίνακας Διαχείρισης
                     </a>
                 </span>
             </div>

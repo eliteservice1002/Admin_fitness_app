@@ -159,7 +159,7 @@
             var id_arr = [];
             var amount_arr = [];
             $(".food-menu").each(function(i) {
-                id_arr.push($(this).children('.id-div').children('#food-id').val());
+                id_arr.push($(this).children('.id-div').children('#food-id-'+(i+1).toString()).val());
 
                 if (!$(this).children('.amount-div').children('#food-amount').val()) {
                     amount_arr.push(0);

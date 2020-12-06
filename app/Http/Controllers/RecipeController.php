@@ -63,8 +63,9 @@ class RecipeController extends Controller
             'description' => $request->description,
             'image' => $image,
         ]);
-
+        // dd($request);
         $food_id = explode(",", $request->food_id);
+        
         $food_amount = explode(",", $request->food_amount);
 
         $recipe = Recipe::latest()->first();

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
 
-    <title>Food Management System Admin</title>
+    <title>ZAFEIRAKI Σύστημα Admin</title>
 
     <meta name="description" content="Dashmix - Bootstrap 4 Admin Template &amp; UI Framework created by pixelcave and published on Themeforest">
     <meta name="author" content="pixelcave">
@@ -106,7 +106,7 @@
 
                         <!-- User Info -->
                         <div class="ml-2">
-                            <a class="text-white font-w600" href="javascript:void(0)">Administrator</a>
+                            <a class="text-white font-w600" href="javascript:void(0)">Διαχειριστής</a>
                             <!-- <div class="text-white-75 font-size-sm font-italic">Full Stack Developer</div> -->
                         </div>
                         <!-- END User Info -->
@@ -128,13 +128,13 @@
                     <!-- Color Themes -->
                     <!-- Toggle Themes functionality initialized in Template._uiHandleTheme() -->
                     <div class="block-content block-content-sm block-content-full bg-body">
-                        <span class="text-uppercase font-size-sm font-w700">Color Themes</span>
+                        <span class="text-uppercase font-size-sm font-w700">Χρώμα Θέματα</span>
                     </div>
                     <div class="block-content block-content-full">
                         <div class="row gutters-tiny text-center">
                             <div class="col-4 mb-1">
                                 <a class="d-block py-3 text-white font-size-sm font-w600 bg-default" data-toggle="theme" data-theme="default" href="#">
-                                    Default
+                                    Προκαθορισμένο
                                 </a>
                             </div>
                             <div class="col-4 mb-1">
@@ -381,11 +381,11 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right p-0" aria-labelledby="page-header-user-dropdown">
                             <div class="bg-primary-darker rounded-top font-w600 text-white text-center p-3">
-                                User Options
+                                Επιλογές χρήστη
                             </div>
                             <div class="p-2">
                                 <a class="dropdown-item" href="<?php echo e(route('logout')); ?>">
-                                    <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Sign Out
+                                    <i class="far fa-fw fa-arrow-alt-circle-left mr-1"></i> Αποσύνδεση
                                 </a>
                             </div>
                         </div>
