@@ -8,10 +8,10 @@ class FoodItem extends Model
 {
     //
     protected $fillable = [
-        'food_name', 'food_categories_id', 'carbon', 'protein', 'fat', 'portion_in_grams'
+        'food_name', 'carbon', 'protein', 'fat', 'portion_in_grams'
     ];
 
-    public function foodcategory() {
-        return $this->belongsTo(FoodCategory::class, 'food_categories_id');
+    public function foodRelations() {
+        return $this->hasMany(FoodRelation::class, 'food_item_id', 'id');
     }
 }

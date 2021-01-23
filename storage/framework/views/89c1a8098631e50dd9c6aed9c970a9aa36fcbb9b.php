@@ -36,14 +36,17 @@
                     <?php echo csrf_field(); ?>
                     <div class="row justify-content-center">
                         <div class="col-xs-10 col-sm-10 col-md-10">
-                            <div class="form-group row">
+                            <div class="row">
                                 <label for="food_categories_id" class="col-sm-4">Κατηγορία:</label>
                                 <div class="col-sm-8">
-                                    <select name="food_categories_id" id="food_categories_id" class="form-control">
-                                        <?php $__currentLoopData = $foodcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $foodcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <option value="<?php echo e($foodcategory->id); ?>"><?php echo e($foodcategory->name); ?></option>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    </select>
+                                    <div class="form-group">
+                                        <select class="js-select2 form-control" id="food_categories_id" name="food_categories_id[]" style="width: 100%;" data-placeholder="Choose many.." multiple>
+                                            <option></option>
+                                            <?php $__currentLoopData = $foodcategories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $foodcategory): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($foodcategory->id); ?>"><?php echo e($foodcategory->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -92,5 +95,7 @@
     </div>
     <!-- END Page Content -->
 <?php $__env->stopSection(); ?>
+
+
 
 <?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/fooditems/create.blade.php ENDPATH**/ ?>

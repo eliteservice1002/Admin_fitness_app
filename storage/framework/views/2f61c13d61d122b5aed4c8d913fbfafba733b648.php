@@ -22,8 +22,10 @@
     <!-- Fonts and Styles -->
     <?php echo $__env->yieldContent('css_before'); ?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,400i,600,700">
+    
+    <link rel="stylesheet" href="<?php echo e(asset('plugins/select2/css/select2.min.css')); ?>">
     <link rel="stylesheet" id="css-main" href="<?php echo e(mix('css/dashmix.css')); ?>">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    
 
     <!-- You can include a specific file from public/css/themes/ folder to alter the default color theme of the template. eg: -->
     <!-- <link rel="stylesheet" id="css-theme" href="<?php echo e(mix('css/themes/xwork.css')); ?>"> -->
@@ -462,11 +464,12 @@
     <script src="<?php echo e(mix('js/dashmix.app.js')); ?>"></script>
     <script src="<?php echo e(asset('plugins/ckeditor/ckeditor.js')); ?>"></script>
     <!-- <script src=" <?php echo e(asset('js/choosen.js')); ?>"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <script src="<?php echo e(asset('plugins/select2/js/select2.full.min.js')); ?>"></script>
+    
 
     <!-- Laravel Scaffolding JS -->
     <!-- <script src="<?php echo e(mix('/js/laravel.app.js')); ?>"></script> -->
-
+    <script>jQuery(function(){ Dashmix.helpers(['select2']); });</script>
     <?php echo $__env->yieldContent('js_after'); ?>
 </body>
 

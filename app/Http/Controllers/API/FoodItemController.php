@@ -22,7 +22,11 @@ class FoodItemController extends Controller
         //       
         $fooditems = FoodItem::all();
         foreach ($fooditems as $key => $fooditem) {
-            $fooditems[$key]['category'] = FoodCategory::where('id', $fooditem->food_categories_id)->first();
+            $categories = [];
+            foreach ($fooditem->foodRelations as $key2 => $relation) {
+                array_push($categories, $relation->foodCategory);
+            }
+            $fooditem['categories'] = $categories;
         }
 
         $response = [
@@ -43,8 +47,8 @@ class FoodItemController extends Controller
     public function store(Request $request)
     {
         //
+        
         $input = $request->all();
-
         $validator = Validator::make($input, [
             'food_name' => 'required',
             'food_categories_id' => 'required',

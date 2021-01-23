@@ -38,14 +38,17 @@
                     @csrf
                     <div class="row justify-content-center">
                         <div class="col-xs-10 col-sm-10 col-md-10">
-                            <div class="form-group row">
+                            <div class="row">
                                 <label for="food_categories_id" class="col-sm-4">Κατηγορία:</label>
                                 <div class="col-sm-8">
-                                    <select name="food_categories_id" id="food_categories_id" class="form-control">
-                                        @foreach($foodcategories as $foodcategory)
-                                            <option value="{{$foodcategory->id}}">{{$foodcategory->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <div class="form-group">
+                                        <select class="js-select2 form-control" id="food_categories_id" name="food_categories_id[]" style="width: 100%;" data-placeholder="Choose many.." multiple>
+                                            <option></option>
+                                            @foreach($foodcategories as $foodcategory)
+                                                <option value="{{$foodcategory->id}}">{{$foodcategory->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -94,3 +97,7 @@
     </div>
     <!-- END Page Content -->
 @endsection
+
+{{-- @section('js_after')
+<script>jQuery(function(){ Dashmix.helpers(['select2']); });</script>
+@endsection --}}

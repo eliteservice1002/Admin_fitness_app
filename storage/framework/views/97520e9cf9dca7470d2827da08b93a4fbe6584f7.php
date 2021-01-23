@@ -47,7 +47,7 @@
                         <tr>
                             <td class="text-center"><?php echo e($loop->iteration); ?></td>
                             <td class="d-none d-sm-table-cell"><?php echo e($foodItem->food_name); ?></td>
-                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->foodcategory->name); ?></td>
+                            <td class="d-none d-sm-table-cell"><?php echo e($foodItem->categories); ?></td>
                             <td class="d-none d-sm-table-cell"><?php echo e($foodItem->carbon); ?></td>
                             <td class="d-none d-sm-table-cell"><?php echo e($foodItem->protein); ?></td>
                             <td class="d-none d-sm-table-cell"><?php echo e($foodItem->fat); ?></td>

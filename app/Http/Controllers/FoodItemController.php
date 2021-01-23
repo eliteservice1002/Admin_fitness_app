@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\FoodItem;
 use App\Models\FoodValue;
 use App\Models\FoodCategory;
+use App\Models\FoodRelation;
 use Illuminate\Http\Request;
 
 class FoodItemController extends Controller
@@ -18,6 +19,14 @@ class FoodItemController extends Controller
     {
         //
         $fooditems = FoodItem::latest()->paginate(5);
+
+        foreach ($fooditems as $key => $fooditem) {
+            $categories = [];
+            foreach ($fooditem->foodRelations as $key2 => $relation) {
+                array_push($categories, $relation->foodCategory->name);
+            }
+            $fooditem->categories = implode(', ', $categories);
+        }
 
         return  view('fooditems.index', compact('fooditems'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -53,7 +62,15 @@ class FoodItemController extends Controller
             'portion_in_grams' => 'required',
         ]);
 
-        FoodItem::create($request->all());
+        $food = FoodItem::create($request->all());
+
+        $categories = $request->food_categories_id;
+        foreach ($categories as $key => $category) {
+            FoodRelation::create([
+                'food_item_id' => $food->id,
+                'food_category_id' => $category
+            ]);
+        }
 
         return  redirect()->route('fooditems.index')
                 ->with('success','FoodItem created successfully.');
@@ -81,6 +98,7 @@ class FoodItemController extends Controller
     {
         //
         $foodcategories = FoodCategory::latest()->get();
+        $fooditem->category_ids = $fooditem->foodRelations->pluck('food_category_id')->ToArray();
         return view('fooditems.edit',compact('fooditem', 'foodcategories'));
     }
 
@@ -105,6 +123,20 @@ class FoodItemController extends Controller
 
         $fooditem->update($request->all());
 
+        $categories = $request->food_categories_id;
+        foreach ($categories as $key => $category) {
+            FoodRelation::updateOrCreate([
+                'food_item_id' => $fooditem->id,
+                'food_category_id' => $category
+            ]);
+        }
+
+        $deleteCategories = FoodRelation::whereNotIn('food_category_id', $categories)->where('food_item_id', $fooditem->id)->get();
+        foreach ($deleteCategories as $key => $category) {
+            $category->delete();
+        }
+
+
         return  redirect()->route('fooditems.index')
                 ->with('success','FoodItem updated successfully.');
     }
@@ -119,9 +151,14 @@ class FoodItemController extends Controller
     {
         //
         $foodvalues = FoodValue::where('food_items_id', $fooditem->id)->get();
+        $foodrelations = FoodRelation::where('food_item_id', $fooditem->id)->get();
 
         foreach($foodvalues as $foodvalue) {
             $foodvalue->delete();
+        }
+
+        foreach($foodrelations as $relation) {
+            $relation->delete();
         }
 
         $fooditem->delete();

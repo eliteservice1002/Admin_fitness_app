@@ -49,7 +49,7 @@
                         <tr>
                             <td class="text-center">{{ $loop->iteration }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->food_name }}</td>
-                            <td class="d-none d-sm-table-cell">{{ $foodItem->foodcategory->name }}</td>
+                            <td class="d-none d-sm-table-cell">{{ $foodItem->categories }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->carbon }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->protein }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->fat }}</td>
