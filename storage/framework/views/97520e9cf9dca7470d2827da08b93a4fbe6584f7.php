@@ -98,7 +98,7 @@
                         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                     </tbody>
                 </table>
-                <div class="text-center"><?php echo $fooditems->links(); ?></div>
+                <div class="text-center" style="width: fit-content; margin:auto;"><?php echo $fooditems->links(); ?></div>
             </div>
         </div>
     </div>

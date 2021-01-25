@@ -70,7 +70,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="text-center">{!! $sports->links() !!}</div>
+                <div class="text-center" style="width: fit-content; margin:auto;">{!! $sports->links() !!}</div>
             </div>
         </div>
     </div>

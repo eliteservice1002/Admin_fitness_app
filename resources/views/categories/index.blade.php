@@ -67,7 +67,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="text-center">{!! $categories->links() !!}</div>
+                    <div class="text-center" style="width: fit-content; margin:auto;">{!! $categories->links() !!}</div>
                 </div>
             </div>
         </div>
