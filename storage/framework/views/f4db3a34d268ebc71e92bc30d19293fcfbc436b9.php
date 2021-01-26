@@ -1,6 +1,4 @@
-@extends('layouts.backend')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Hero -->
 <div class="bg-body-light">
     <div class="content content-full">
@@ -18,53 +16,53 @@
             <h3 class="block-title">Edit Recipe</h3>
             <div class="block-options">
                 <div class="pull-right">
-                    <a class="btn btn-primary" href="{{ route('recipes.index') }}"> Πίσω</a>
+                    <a class="btn btn-primary" href="<?php echo e(route('recipes.index')); ?>"> Πίσω</a>
                 </div>
             </div>
         </div>
         <div class="block-content">
-            @if ($errors->any())
+            <?php if($errors->any()): ?>
             <div class="alert alert-danger">
                 <strong>Whoops!</strong> There were some problems with your input.<br><br>
                 <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <li><?php echo e($error); ?></li>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </ul>
             </div>
-            @endif
-            <form action="{{ route('recipes.update',$recipe->id) }}" id="store" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
+            <?php endif; ?>
+            <form action="<?php echo e(route('recipes.update',$recipe->id)); ?>" id="store" method="POST" enctype="multipart/form-data">
+                <?php echo csrf_field(); ?>
+                <?php echo method_field('PUT'); ?>
 
                 <div class="row justify-content-center">
                     <div class="col-xs-10 col-sm-10 col-md-10">
                         <div class="form-group row">
                             <label for="name" class="col-sm-4">Τίτλος:</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" id="title" name="title" value="{{$recipe->title}}" placeholder="Enter Title...">
+                                <input type="text" class="form-control" id="title" name="title" value="<?php echo e($recipe->title); ?>" placeholder="Enter Title...">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="categories_id" class="col-sm-4">Κατηγορία:</label>
                             <div class="col-sm-8">
                                 <select name="categories_id" id="categories_id" class="form-control">
-                                    @foreach($categories as $category)
-                                    <option value="{{$category->id}}" <?php if ($category->id == $recipe->categories_id) echo "selected" ?>>{{$category->name}}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($category->id); ?>" <?php if ($category->id == $recipe->categories_id) echo "selected" ?>><?php echo e($category->name); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="description" class="col-sm-4">Περιγραφή:</label>
                             <div class="col-sm-8">
-                                <textarea class="form-control" id="description" name="description" value="{{$recipe->description}}">{{$recipe->description}}</textarea>
+                                <textarea class="form-control" id="description" name="description" value="<?php echo e($recipe->description); ?>"><?php echo e($recipe->description); ?></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="image" class="col-sm-4">Εικόνα:</label>
                             <div class="col-sm-8">
-                                <img src="data:image/png;base64, {{ $recipe->image }}" width="100" height="100" alt="Recipe" />
+                                <img src="data:image/png;base64, <?php echo e($recipe->image); ?>" width="100" height="100" alt="Recipe" />
                                 <input type="file" name="image" id="image" placeholder="Image">
                             </div>
                         </div>
@@ -101,27 +99,27 @@
 <script>
     $(document).ready(function() {
         CKEDITOR.replace('description');
-        var total = parseInt("{{$foodvalues->count()}}") + 1;
+        var total = parseInt("<?php echo e($foodvalues->count()); ?>") + 1;
 
         $("#add").before(
-            '@foreach($foodvalues as $foodvalue)\
+            '<?php $__currentLoopData = $foodvalues; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $foodvalue): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>\
                     <div class="food-menu row mb-2">\
                         <label for="add" class="col-sm-3">Φαγητό:</label>\
                         <div class="col-sm-4 id-div">\
-                            <select name="food-id" id="food-id-{{$loop->iteration}}" class="form-control">\
-                                @foreach($fooditems as $fooditem)\
-                                <option value="{{$fooditem->id}}" <?php if ($fooditem->id == $foodvalue->food_items_id) echo "selected" ?>>{{$fooditem->food_name}}</option>\
-                                @endforeach\
+                            <select name="food-id" id="food-id-<?php echo e($loop->iteration); ?>" class="form-control">\
+                                <?php $__currentLoopData = $fooditems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fooditem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>\
+                                <option value="<?php echo e($fooditem->id); ?>" <?php if ($fooditem->id == $foodvalue->food_items_id) echo "selected" ?>><?php echo e($fooditem->food_name); ?></option>\
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>\
                             </select>\
                         </div>\
                         <div class="col-sm-4 amount-div">\
-                            <input type="text" name="food-amount" id="food-amount" value="{{$foodvalue->amount}}" class="form-control" placeholder="Amount">\
+                            <input type="text" name="food-amount" id="food-amount" value="<?php echo e($foodvalue->amount); ?>" class="form-control" placeholder="Amount">\
                         </div>\
                         <div class="col-sm-1">\
                             <button class="btn btn-danger" id="delete" onclick="deleteTag(this)"><i class="fa fa-times"></i></button>\
                         </div>\
                     </div>\
-                @endforeach'
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>'
         );
 
         for (var i = 1; i < total; i++) {
@@ -134,9 +132,9 @@
                         <label for="add" class="col-sm-3">Food:</label>\
                         <div class="col-sm-4 id-div">\
                             <select name="food-id" id="food-id-' + i + '" class="form-control">\
-                                @foreach($fooditems as $fooditem)\
-                                <option value="{{$fooditem->id}}">{{$fooditem->food_name}}</option>\
-                                @endforeach\
+                                <?php $__currentLoopData = $fooditems; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fooditem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>\
+                                <option value="<?php echo e($fooditem->id); ?>"><?php echo e($fooditem->food_name); ?></option>\
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>\
                             </select>\
                         </div>\
                         <div class="col-sm-4 amount-div">\
@@ -174,4 +172,5 @@
         })
     });
 </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.backend', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp\htdocs\Admin_fitness_app\resources\views/recipes/edit.blade.php ENDPATH**/ ?>

@@ -81,7 +81,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-8 ml-auto">
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-fw fa-check"></i> Εκσυγχρονίζω
+                                        <i class="fa fa-fw fa-check"></i> Ενημέρωση
                                     </button>
                                 </div>
                             </div>

@@ -14,7 +14,7 @@
                 </h2>
                 <span class="m-2 d-inline-block invisible" data-toggle="appear" data-timeout="300">
                     <a class="btn btn-hero-success" href="/dashboard">
-                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> Εισαγω Πίνακας Διαχείρισης
+                        <i class="fa fa-fw fa-sign-in-alt mr-1"></i> ΣΥΝΔΕΣΗ ΣΤΗ ΔΙΑΧΕΙΡΙΣΗ
                     </a>
                 </span>
             </div>

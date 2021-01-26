@@ -40,7 +40,7 @@
                     <div class="row justify-content-center">
                         <div class="col-xs-8 col-sm-8 col-md-8">
                             <div class="form-group row">
-                                <label for="name" class="col-sm-2">Name:</label>
+                                <label for="name" class="col-sm-2">Όνομα:</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control" id="name" name="name" value="{{ $category->name }}" placeholder="Enter Category Name...">
                                 </div>
@@ -50,7 +50,7 @@
                             <div class="form-group row">
                                 <div class="col-sm-10 ml-auto">
                                     <button type="submit" class="btn btn-primary">
-                                        <i class="fa fa-fw fa-check"></i> Update
+                                        <i class="fa fa-fw fa-check"></i> Ενημέρωση
                                     </button>
                                 </div>
                             </div>
