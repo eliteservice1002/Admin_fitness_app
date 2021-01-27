@@ -34,14 +34,15 @@
                 <table class="table table-bordered table-striped table-vcenter">
                     <thead>
                         <tr>
-                            <th class="text-center" style="width: 10%;">No</th>
+                            <th class="text-center" style="width: 5%;">No</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">Κατηγορία</th>
                             <th class="d-none d-sm-table-cell" style="width: 15%;">Όνομα Τροφής</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">Υδατάνθρακες (carbs)</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">Πρωτεΐνες (proteins)</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">Λιπαρά (fat)</th>
                             <th class="d-none d-sm-table-cell" style="width: 10%;">Γραμμάρια (g)</th>
-                            <th class="d-none d-md-table-cell text-center" style="width: 20%;">Ενέργειες</th>
+                            <th class="d-none d-sm-table-cell" style="width: 10%;">Kcal</th>
+                            <th class="d-none d-md-table-cell text-center" style="width: 15%;">Ενέργειες</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,6 +55,7 @@
                             <td class="d-none d-sm-table-cell">{{ $foodItem->protein }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->fat }}</td>
                             <td class="d-none d-sm-table-cell">{{ $foodItem->portion_in_grams }}</td>
+                            <td class="d-none d-sm-table-cell">{{ $foodItem->kcal }}</td>
                             <td class="text-center">
                                 <form id="delete-{{$foodItem->id}}" action="{{ route('fooditems.destroy',$foodItem->id) }}" method="POST">
                                     <div class="btn-group">

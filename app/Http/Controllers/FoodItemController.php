@@ -60,6 +60,7 @@ class FoodItemController extends Controller
             'protein' => 'required',
             'fat' => 'required',
             'portion_in_grams' => 'required',
+            'kcal' => 'required',
         ]);
 
         $food = FoodItem::create($request->all());
@@ -85,7 +86,9 @@ class FoodItemController extends Controller
     public function show(FoodItem $fooditem)
     {
         //
-        return view('fooditems.show',compact('fooditem'));
+        $foodcategories = FoodCategory::latest()->get();
+        $fooditem->category_ids = $fooditem->foodRelations->pluck('food_category_id')->ToArray();
+        return view('fooditems.show',compact('fooditem', 'foodcategories'));
     }
 
     /**
@@ -119,8 +122,9 @@ class FoodItemController extends Controller
             'protein' => 'required',
             'fat' => 'required',
             'portion_in_grams' => 'required',
+            'kcal' => 'required',
         ]);
-
+        
         $fooditem->update($request->all());
 
         $categories = $request->food_categories_id;

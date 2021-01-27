@@ -55,7 +55,8 @@ class FoodItemController extends Controller
             'carbon' => 'required',
             'protein' => 'required',
             'fat' => 'required',
-            'portion_in_grams' => 'required'
+            'portion_in_grams' => 'required',
+            'kcal' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -114,7 +115,8 @@ class FoodItemController extends Controller
             'carbon' => 'required',
             'protein' => 'required',
             'fat' => 'required',
-            'portion_in_grams' => 'required'
+            'portion_in_grams' => 'required',
+            'kcal' => 'required'
         ]);
 
         if ($validator->fails()) {

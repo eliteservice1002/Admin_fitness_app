@@ -81,6 +81,12 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="name" class="col-sm-4">Kcal:</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="kcal" name="kcal" value="{{ $fooditem->kcal }}" placeholder="Enter Portion In Kcal...">
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-sm-8 ml-auto">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-fw fa-check"></i> Ενημέρωση
