@@ -63,7 +63,7 @@ class RecipeController extends Controller
             'description' => $request->description,
             'image' => $image,
         ]);
-        // dd($request);
+
         $food_id = explode(",", $request->food_id);
         
         $food_amount = explode(",", $request->food_amount);
@@ -75,7 +75,7 @@ class RecipeController extends Controller
             FoodValue::create([
                 'recipes_id' => $recipe->id,
                 'food_items_id' => $food_id[$i],
-                'amount' => $food_amount[$i]
+                'amount' => str_replace(',', '.', $food_amount[$i])
             ]);
         }
 

@@ -1,5 +1,7 @@
 @extends('layouts.backend')
-
+@section('css_after')
+    <link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+@endsection
 @section('content')
 <!-- Hero -->
 <div class="bg-body-light">
@@ -31,7 +33,7 @@
             </div>
             @endif
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-vcenter">
+                <table id="foodTable" class="table table-bordered table-striped table-vcenter">
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 5%;">No</th>
@@ -102,19 +104,26 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="text-center" style="width: fit-content; margin:auto;">{!! $fooditems->links() !!}</div>
+                {{-- <div class="text-center" style="width: fit-content; margin:auto;">{!! $fooditems->links() !!}</div> --}}
             </div>
         </div>
     </div>
     <!-- END Your Block -->
 </div>
 <!-- END Page Content -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
 <script>
     $(document).ready(function() {
         $('.confirm').click(function() {
             $('#delete-' + $(this).data("id")).submit();
         });
+        
+        $('#foodTable').DataTable();
     });
 </script>
+@endsection
+
+@section('js_after')
+<script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 @endsection

@@ -101,8 +101,19 @@
         </div>
         <!-- END Your Block -->
     </div>
+    {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+    <script>
+        
+        $('#carbon').keyup(function(){
+            let carbs = $('#carbon').val();
+            carbs = carbs.replace(/\,/g, '.') 
+            $('#carbon').val(carbs);
+        });
+    </script> --}}
     <!-- END Page Content -->
 @endsection
+
 
 {{-- @section('js_after')
 <script>jQuery(function(){ Dashmix.helpers(['select2']); });</script>

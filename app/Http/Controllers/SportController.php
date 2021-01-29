@@ -16,6 +16,9 @@ class SportController extends Controller
     {
         //
         $sports = Sport::latest()->paginate(5);
+        foreach ($sports as $sport) {
+            $sport->coefficient = str_replace('.', ',', $sport->coefficient);
+        }
 
         return  view('sports.index', compact('sports'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -46,6 +49,10 @@ class SportController extends Controller
             'coefficient' => 'required',
         ]);
 
+        $request->merge([
+            'coefficient' => str_replace(',', '.', $request->input('coefficient'))
+        ]);
+
         Sport::create($request->all());
 
         return  redirect()->route('sports.index')
@@ -73,6 +80,7 @@ class SportController extends Controller
     public function edit(Sport $sport)
     {
         //
+        $sport->coefficient = str_replace('.', ',', $sport->coefficient);
         return view('sports.edit', compact('sport'));
     }
 
@@ -90,7 +98,10 @@ class SportController extends Controller
             'name' => 'required',
             'coefficient' => 'required',
         ]);
-
+        
+        $request->merge([
+            'coefficient' => str_replace(',', '.', $request->input('coefficient'))
+        ]);
         $sport->update($request->all());
 
         return  redirect()->route('sports.index')

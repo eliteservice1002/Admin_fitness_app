@@ -18,9 +18,16 @@ class FoodItemController extends Controller
     public function index()
     {
         //
-        $fooditems = FoodItem::latest()->paginate(5);
-
+        $fooditems = FoodItem::latest()->get();
+    
         foreach ($fooditems as $key => $fooditem) {
+
+            $fooditem->carbon = str_replace('.', ',', $fooditem->carbon);
+            $fooditem->protein = str_replace('.', ',', $fooditem->protein);
+            $fooditem->fat = str_replace('.', ',', $fooditem->fat);
+            $fooditem->portion_in_grams = str_replace('.', ',', $fooditem->portion_in_grams);
+            $fooditem->kcal = str_replace('.', ',', $fooditem->kcal);
+
             $categories = [];
             foreach ($fooditem->foodRelations as $key2 => $relation) {
                 array_push($categories, $relation->foodCategory->name);
@@ -62,6 +69,12 @@ class FoodItemController extends Controller
             'portion_in_grams' => 'required',
             'kcal' => 'required',
         ]);
+        
+        $request->carbon = str_replace(',', '.', $request->input('carbon'));
+        $request->protein = str_replace(',', '.', $request->input('protein'));
+        $request->fat = str_replace(',', '.', $request->input('fat'));
+        $request->portion_in_grams = str_replace(',', '.', $request->input('portion_in_grams'));
+        $request->kcal = str_replace(',', '.', $request->input('kcal'));
 
         $food = FoodItem::create($request->all());
 
@@ -100,6 +113,12 @@ class FoodItemController extends Controller
     public function edit(FoodItem $fooditem)
     {
         //
+        $fooditem->carbon = str_replace('.', ',', $fooditem->carbon);
+        $fooditem->protein = str_replace('.', ',', $fooditem->protein);
+        $fooditem->fat = str_replace('.', ',', $fooditem->fat);
+        $fooditem->portion_in_grams = str_replace('.', ',', $fooditem->portion_in_grams);
+        $fooditem->kcal = str_replace('.', ',', $fooditem->kcal);
+
         $foodcategories = FoodCategory::latest()->get();
         $fooditem->category_ids = $fooditem->foodRelations->pluck('food_category_id')->ToArray();
         return view('fooditems.edit',compact('fooditem', 'foodcategories'));
@@ -123,6 +142,15 @@ class FoodItemController extends Controller
             'fat' => 'required',
             'portion_in_grams' => 'required',
             'kcal' => 'required',
+        ]);
+
+        $request->merge([
+            'carbon' => str_replace(',', '.', $request->input('carbon')),
+            'protein' => str_replace(',', '.', $request->input('protein')),
+            'fat' => str_replace(',', '.', $request->input('fat')),
+            'portion_in_grams' => str_replace(',', '.', $request->input('portion_in_grams')),
+            'kcal' => str_replace(',', '.', $request->input('kcal')),
+
         ]);
         
         $fooditem->update($request->all());
