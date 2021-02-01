@@ -144,19 +144,20 @@ class RecipeController extends Controller
         $food_id = explode(",", $request->food_id);
         $food_amount = explode(",", $request->food_amount);
 
-        $foodvalues = FoodValue::where('recipes_id', $recipe->id)->get();
+        $foodvalues = FoodValue::whereNotIn('food_items_id', $food_id)->where('recipes_id', $recipe->id)->get();
+
         for ($i=0; $i < count($foodvalues); $i++) {
             # code...
             $foodvalues[$i]->delete();
         }
 
         for ($i=0; $i < count($food_id); $i++) {
-            # code...
-            FoodValue::create([
-                'recipes_id' => $recipe->id,
-                'food_items_id' => $food_id[$i],
-                'amount' => $food_amount[$i]
-            ]);
+            if($food_id[$i] != "") {
+                FoodValue::updateOrCreate([
+                    'recipes_id' => $recipe->id,
+                    'food_items_id' => $food_id[$i],
+                ], ['amount' => $food_amount[$i]]);
+            }
         }
 
         return  redirect()->route('recipes.index')
