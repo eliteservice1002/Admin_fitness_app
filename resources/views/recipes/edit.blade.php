@@ -105,7 +105,7 @@
 
         $("#add").before(
             '@foreach($foodvalues as $foodvalue)\
-                    <div class="food-menu row mb-2">\
+                    <div class="food-menu row mb-2" data-id="{{$loop->iteration}}">\
                         <label for="add" class="col-sm-3">Φαγητό:</label>\
                         <div class="col-sm-4 id-div">\
                             <select name="food-id" id="food-id-{{$loop->iteration}}" class="form-control">\
@@ -118,7 +118,7 @@
                             <input type="text" name="food-amount" id="food-amount" value="{{$foodvalue->amount}}" class="form-control" placeholder="Amount">\
                         </div>\
                         <div class="col-sm-1">\
-                            <button class="btn btn-danger" id="delete" onclick="deleteTag(this)"><i class="fa fa-times"></i></button>\
+                            <button class="btn btn-danger" onclick="deleteTag(this)"><i class="fa fa-times"></i></button>\
                         </div>\
                     </div>\
                 @endforeach'
@@ -130,7 +130,7 @@
 
         $("#add").click(function() {
             $(this).before(
-                '<div class="food-menu row mb-2">\
+                '<div class="food-menu row mb-2" data-id="' + i + '">\
                         <label for="add" class="col-sm-3">Food:</label>\
                         <div class="col-sm-4 id-div">\
                             <select name="food-id" id="food-id-' + i + '" class="form-control">\
@@ -143,7 +143,7 @@
                             <input type="text" name="food-amount" id="food-amount" class="form-control" placeholder="Amount">\
                         </div>\
                         <div class="col-sm-1">\
-                            <button class="btn btn-danger" id="delete" onclick="deleteTag(this)"><i class="fa fa-times"></i></button>\
+                            <button class="btn btn-danger" onclick="deleteTag(this)"><i class="fa fa-times"></i></button>\
                         </div>\
                     </div>'
             );
@@ -159,7 +159,8 @@
             var id_arr = [];
             var amount_arr = [];
             $(".food-menu").each(function(i) {
-                id_arr.push($(this).children('.id-div').children('#food-id-'+(i+1).toString()).val());
+                
+                id_arr.push($(this).children('.id-div').children('#food-id-'+($(this).data('id')).toString()).val());
 
                 if (!$(this).children('.amount-div').children('#food-amount').val()) {
                     amount_arr.push(0);

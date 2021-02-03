@@ -140,17 +140,16 @@ class RecipeController extends Controller
             'description' => $request->description,
             'image' => $image,
         ]);
-
+        
         $food_id = explode(",", $request->food_id);
         $food_amount = explode(",", $request->food_amount);
-
         $foodvalues = FoodValue::whereNotIn('food_items_id', $food_id)->where('recipes_id', $recipe->id)->get();
 
         for ($i=0; $i < count($foodvalues); $i++) {
             # code...
             $foodvalues[$i]->delete();
         }
-
+        
         for ($i=0; $i < count($food_id); $i++) {
             if($food_id[$i] != "") {
                 FoodValue::updateOrCreate([
