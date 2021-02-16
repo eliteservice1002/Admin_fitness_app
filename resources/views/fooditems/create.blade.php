@@ -88,6 +88,26 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="name" class="col-sm-4">Μερίδα (grams):</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="serving_size" name="serving_size" placeholder="Εισαγάγετε το Μερίδα...">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-4">Επέλεξε πρόθεμα:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="serving_prefix" name="serving_prefix" style="width: 100%;" data-placeholder="Επέλεξε πρόθεμα...">
+                                        <option value="τεμάχιο">1 τεμάχιο</option>
+                                        <option value="φλυτζάνι">1 φλυτζάνι</option>
+                                        <option value="κουταλιά σουπας">1 κουταλιά σουπας</option>
+                                        <option value="κουταλιά γλυκού">1 κουταλιά γλυκού</option>
+                                        <option value="μερίδα">1 μερίδα</option>
+                                        <option value="φέτα">1 φέτα</option>
+                                        <option value="μέτριο">1 μέτριο</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-sm-8 ml-auto">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-fw fa-check"></i> Αποθήκευση
@@ -104,10 +124,10 @@
     {{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
     <script>
-        
+
         $('#carbon').keyup(function(){
             let carbs = $('#carbon').val();
-            carbs = carbs.replace(/\,/g, '.') 
+            carbs = carbs.replace(/\,/g, '.')
             $('#carbon').val(carbs);
         });
     </script> --}}

@@ -87,6 +87,26 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="name" class="col-sm-4">Μερίδα (grams):</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="serving_size" name="serving_size" value="{{ $fooditem->serving_size }}" placeholder="Εισαγάγετε το Μερίδα...">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="name" class="col-sm-4">Επέλεξε πρόθεμα:</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="serving_prefix" name="serving_prefix" style="width: 100%;" data-placeholder="Επέλεξε πρόθεμα...">
+                                        <option value="τεμάχιο">1 τεμάχιο</option>
+                                        <option value="φλυτζάνι">1 φλυτζάνι</option>
+                                        <option value="κουταλιά σουπας">1 κουταλιά σουπας</option>
+                                        <option value="κουταλιά γλυκού">1 κουταλιά γλυκού</option>
+                                        <option value="μερίδα">1 μερίδα</option>
+                                        <option value="φέτα">1 φέτα</option>
+                                        <option value="μέτριο">1 μέτριο</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <div class="col-sm-8 ml-auto">
                                     <button type="submit" class="btn btn-primary">
                                         <i class="fa fa-fw fa-check"></i> Ενημέρωση
@@ -101,4 +121,12 @@
         <!-- END Your Block -->
     </div>
     <!-- END Page Content -->
+@endsection
+@section('js_after')
+<script>
+    $(document).ready(function() {
+        let prefix = "{{ $fooditem->serving_prefix }}"
+        $('select option[value="' + prefix + '"]').attr("selected",true);
+    })
+</script>
 @endsection
