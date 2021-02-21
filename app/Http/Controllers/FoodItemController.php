@@ -27,6 +27,7 @@ class FoodItemController extends Controller
             $fooditem->fat = str_replace('.', ',', $fooditem->fat);
             $fooditem->portion_in_grams = str_replace('.', ',', $fooditem->portion_in_grams);
             $fooditem->kcal = str_replace('.', ',', $fooditem->kcal);
+            $fooditem->serving_size = str_replace('.', ',', $fooditem->serving_size);
 
             $categories = [];
             foreach ($fooditem->foodRelations as $key2 => $relation) {
@@ -72,13 +73,15 @@ class FoodItemController extends Controller
             'serving_prefix' => 'required',
         ]);
 
-        $request->carbon = str_replace(',', '.', $request->input('carbon'));
-        $request->protein = str_replace(',', '.', $request->input('protein'));
-        $request->fat = str_replace(',', '.', $request->input('fat'));
-        $request->portion_in_grams = str_replace(',', '.', $request->input('portion_in_grams'));
-        $request->kcal = str_replace(',', '.', $request->input('kcal'));
-        $request->serving_size = str_replace(',', '.', $request->input('serving_size'));
-
+        $request->merge([
+            'carbon' => str_replace(',', '.', $request->input('carbon')),
+            'protein' => str_replace(',', '.', $request->input('protein')),
+            'fat' => str_replace(',', '.', $request->input('fat')),
+            'portion_in_grams' => str_replace(',', '.', $request->input('portion_in_grams')),
+            'kcal' => str_replace(',', '.', $request->input('kcal')),
+            'serving_size' => str_replace(',', '.', $request->input('serving_size')),
+        ]);
+        
         $food = FoodItem::create($request->all());
 
         $categories = $request->food_categories_id;
