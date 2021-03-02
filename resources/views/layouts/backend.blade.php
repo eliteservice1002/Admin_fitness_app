@@ -326,7 +326,7 @@
                     <li class="nav-main-item">
                         <a class="nav-main-link{{ request()->is('recipes*') ? ' active' : '' }}" href="/recipes">
                             <i class="nav-main-link-icon si si-grid"></i>
-                            <span class="nav-main-link-name">Συνταγές</span>
+                            <span class="nav-main-link-name"> Έτοιμα Γεύματα</span>
                         </a>
                     </li>
 
