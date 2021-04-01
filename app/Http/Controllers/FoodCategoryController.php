@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FoodCategory;
+use App\Models\FoodItem;
 use App\Models\FoodRelation;
 use Illuminate\Http\Request;
 
@@ -105,9 +106,17 @@ class FoodCategoryController extends Controller
     public function destroy(FoodCategory $foodcategory)
     {
         //
-        $fooditems = FoodRelation::where('food_category_id', $foodcategory->id)->get();
+        $foodRelations = FoodRelation::where('food_category_id', $foodcategory->id)->get();
 
-        foreach($fooditems as $fooditem) {
+        $fooditem_ids = [];
+        foreach($foodRelations as $foodRelation) {
+            if (!in_array($foodRelation->foodItem->id, $fooditem_ids)) {
+                array_push($fooditem_ids, $foodRelation->foodItem->id);
+            }
+            $foodRelation->delete();
+        }
+        $fooditems = FoodItem::whereIn('id', $fooditem_ids)->get();
+        foreach ($fooditems as $key => $fooditem) {
             $fooditem->delete();
         }
 
