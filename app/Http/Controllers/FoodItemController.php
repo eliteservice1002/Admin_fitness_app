@@ -15,10 +15,23 @@ class FoodItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $fooditems = FoodItem::latest()->get();
+        if ($request->search) {
+            $fooditems = FoodItem::latest()->where([
+                ['food_name', '!=', NULL],
+                [function ($query) use ($request) {
+                    if (($search = $request->search)) {
+                        $query->orWhere('food_name', 'LIKE', '%' . $search . '%')->get();
+                    }
+                }]    
+            ])
+            ->get();
+        }
+        else {
+            $fooditems = FoodItem::latest()->paginate(10);
+        }
 
         foreach ($fooditems as $key => $fooditem) {
 
@@ -37,7 +50,8 @@ class FoodItemController extends Controller
         }
 
         return  view('fooditems.index', compact('fooditems'))
-                ->with('i', (request()->input('page', 1) - 1) * 5);
+                ->with('i', (request()->input('page', 1) - 1) * 5)
+                ->with('search', $request->search);
     }
 
     /**

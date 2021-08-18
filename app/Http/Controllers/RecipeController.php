@@ -7,6 +7,7 @@ use App\Models\FoodValue;
 use App\Models\Category;
 use App\Models\FoodItem;
 use Illuminate\Http\Request;
+use Storage;
 
 class RecipeController extends Controller
 {
@@ -54,14 +55,15 @@ class RecipeController extends Controller
             'image' => 'required',
         ]);
 
-        //$image = base64_encode(file_get_contents($request->file('image')->pat‌​h()));
-        $image = base64_encode(file_get_contents($request->image->path()));
+        $imageName = 'image_' . time() . '.png'; //generating unique file name;
+
+        $request->image->move(public_path('images'), $imageName);
 
         Recipe::create([
             'title' => $request->title,
             'categories_id' => $request->categories_id,
             'description' => $request->description,
-            'image' => $image,
+            'image' => $imageName,
         ]);
 
         $food_id = explode(",", $request->food_id);
@@ -129,16 +131,25 @@ class RecipeController extends Controller
         ]);
 
         //$image = base64_encode(file_get_contents($request->file('image')->pat‌​h()));
+        $imageName = 'image_' . time() . '.png'; //generating unique file name;
+
+
         if(!$request->image)
-            $image = $recipe->image;
-        else
-            $image = base64_encode(file_get_contents($request->image->path()));
+            $imageName = $recipe->image;
+        else {
+            $imageName = 'image_' . time() . '.png';
+            if(\File::exists(public_path('images/'.$recipe->image))){
+                \File::delete(public_path('images/'.$recipe->image));
+            }
+            $request->image->move(public_path('images'), $imageName);
+        }
+            
 
         $recipe->update([
             'title' => $request->title,
             'categories_id' => $request->categories_id,
             'description' => $request->description,
-            'image' => $image,
+            'image' => $imageName,
         ]);
         
         $food_id = explode(",", $request->food_id);
@@ -175,6 +186,9 @@ class RecipeController extends Controller
         $foodvalues = FoodValue::where('recipes_id', $recipe->id)->get();
         foreach($foodvalues as $foodvalue) {
             $foodvalue->delete();
+        }
+        if(\File::exists(public_path('images/'.$recipe->image))){
+            \File::delete(public_path('images/'.$recipe->image));
         }
         $recipe->delete();
 
